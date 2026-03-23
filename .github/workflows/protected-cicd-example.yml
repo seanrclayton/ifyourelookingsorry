@@ -12,6 +12,31 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      action:
+        description: Action to run
+        required: true
+        type: string
+      app_name:
+        description: App name
+        required: true
+        type: string
+      service:
+        description: Service name
+        required: true
+        type: string
+      target_sha:
+        description: Commit SHA to deploy or roll back to
+        required: false
+        type: string
+      requested_by:
+        description: GitHub user who requested the run
+        required: true
+        type: string
+      tag_latest:
+        description: Whether latest should be tagged
+        required: false
+        type: boolean
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
