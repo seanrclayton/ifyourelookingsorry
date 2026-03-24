@@ -21,7 +21,7 @@ on:
         type: string
       target_environments:
         description: comma-separated envs, e.g. dev,int,prod
-        required: true
+        required: false
         type: string
       requested_by:
         description: user requesting the action
@@ -46,6 +46,7 @@ on:
         required: true
         default: dev
         type: string
+        
     
 
 jobs:
