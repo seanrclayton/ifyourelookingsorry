@@ -36,6 +36,17 @@ on:
         required: true
         default: mothra
         type: string
+      app_name:
+        description: app name
+        required: true
+        default: mothra
+        type: string
+      tag_latest:
+        description: the latest tag
+        required: true
+        default: dev
+        type: string
+    
 
 jobs:
   build:
