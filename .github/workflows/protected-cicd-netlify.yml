@@ -48,18 +48,21 @@ on:
         type: string
         
     
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout requested revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.target_sha || github.ref }}
+
       - uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: './' # The directory to publish (e.g., './dist', './_site')
+          publish-dir: './'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: "Deploy ${{ github.event.inputs.action }} for ${{ github.event.inputs.target_sha || github.sha }}"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
