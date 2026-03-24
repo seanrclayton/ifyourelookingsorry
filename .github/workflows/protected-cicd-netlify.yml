@@ -41,18 +41,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: [actions/checkout@v4](https://github.com)
-      - name: Use Node.js
-        uses: [actions/setup-node@v4](https://github.com)
+      - uses: actions/checkout@v4
+      - uses: nwtgck/actions-netlify@v3.0
         with:
-          node-version: '20' # Or your project's required Node version
-          cache: 'npm' # Or yarn, pnpm
-      - run: npm install # Or yarn install, pnpm install
-      - run: npm run build # Your project's build command
-      - name: Deploy to Netlify
-        uses: [nwtgck/actions-netlify@v3.0](https://github.com/marketplace/actions/netlify-actions)
-        with:
-          publish-dir: './dist' # The directory to publish (e.g., './dist', './_site')
+          publish-dir: './' # The directory to publish (e.g., './dist', './_site')
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
